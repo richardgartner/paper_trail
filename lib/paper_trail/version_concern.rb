@@ -104,7 +104,7 @@ module PaperTrail
       # Defaults to using the primary key as the secondary sort order if
       # possible.
       def timestamp_sort_order(direction = "asc")
-        [arel_table[PaperTrail.timestamp_field].send(direction.downcase)].tap do |array|
+        [arel_table[PaperTrail.event_field].send(direction.downcase), arel_table[PaperTrail.timestamp_field].send(direction.downcase)].tap do |array|
           array << arel_table[primary_key].send(direction.downcase) if primary_key_is_int?
         end
       end

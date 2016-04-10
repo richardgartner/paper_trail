@@ -77,6 +77,11 @@ module PaperTrail
       PaperTrail.config.timestamp_field
     end
 
+    # Returns the field which records when a version was created.
+    def event_field
+      PaperTrail.config.event_field
+    end
+
     # Sets who is responsible for any changes that occur. You would normally use
     # this in a migration or on the console, when working with models directly.
     # In a controller it is set automatically to the `current_user`.

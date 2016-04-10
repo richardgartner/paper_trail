@@ -6,7 +6,7 @@ module PaperTrail
   # configuration can be found in `paper_trail.rb`, others in `controller.rb`.
   class Config
     include Singleton
-    attr_accessor :timestamp_field, :serializer, :version_limit
+    attr_accessor :timestamp_field, :event_field, :serializer, :version_limit
     attr_writer :track_associations
 
     def initialize
@@ -16,7 +16,8 @@ module PaperTrail
 
       # Variables which affect all threads, whose access is *not* synchronized.
       @timestamp_field = :created_at
-      @serializer = PaperTrail::Serializers::YAML
+      @event_field     = :event
+      @serializer      = PaperTrail::Serializers::YAML
     end
 
     def serialized_attributes
